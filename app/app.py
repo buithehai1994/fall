@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Function to load and preprocess data
+@st.cache_data
 def load_data(file_path):
     # Read the Excel file
     df = pd.read_excel(file_path)
@@ -25,7 +26,13 @@ def load_data(file_path):
     
     return h1, d2
 
-# Path to the Excel file 
+# Cache data processing for bar chart
+@st.cache_data
+def process_data_for_bar_chart(h1):
+    grouped_by_type = h1.groupby('Injury Type', as_index=False)['Number of Cases'].sum()
+    return grouped_by_type
+
+# Path to the Excel file (update with your file path)
 file_path = 'data/AIHW_INJCAT213_Machine_readable_21062024.xlsx'
 
 # Streamlit sidebar UI components
@@ -40,7 +47,8 @@ tab = st.sidebar.radio("Select a Tab", [
     "Percentage of Injury Cases by Age Group",
     "Annual Injury Cases by Year",
     "Insights",
-    "References"
+    "References",
+    "Contact"
 ])
 
 # Display the title and description
@@ -67,13 +75,15 @@ if tab == "Intro":
         - **Insights**: Learn about the most common injuries and how they vary with age.
         
         Please use the navigation options on the sidebar to explore the different visualizations and insights.
-        
-        Note: Data is collected between 1 July 2022 to 30 June 2023
     """)
 
 elif tab == "Total Injuries by Type (Bar Chart)":
     st.subheader("Total Number of Injuries by Type (Bar Chart)")
-    grouped_by_type = h1.groupby('Injury Type', as_index=False)['Number of Cases'].sum()
+    
+    # Use the cached data processing function
+    grouped_by_type = process_data_for_bar_chart(h1)
+    
+    # Create the chart with the preprocessed (cached) data
     fig_bar = px.bar(
         grouped_by_type,
         x='Injury Type',
@@ -84,7 +94,7 @@ elif tab == "Total Injuries by Type (Bar Chart)":
 
 elif tab == "Total Injuries by Type (Pie Chart)":
     st.subheader("Total Number of Injuries by Type (Pie Chart)")
-    grouped_by_type = h1.groupby('Injury Type', as_index=False)['Number of Cases'].sum()
+    grouped_by_type = process_data_for_bar_chart(h1)
     fig_pie = px.pie(
         grouped_by_type,
         names='Injury Type',
@@ -162,4 +172,17 @@ elif tab == "References":
         demographics, and geographical distribution.
         
         Please visit the above link for more detailed information and additional context regarding the data used in this application.
+    """)
+
+elif tab == "Contact":
+    st.header("Contact Me")
+    st.write("""
+        ## Get in Touch
+
+        If you have any questions or feedback about the Flight Fare Prediction Tool, feel free to reach out to me. I am always happy to help!
+
+        **GitHub:**
+        - Check out our repository on [GitHub](https://github.com/buithehai1994/fall) for updates, issues, and contributions.
+
+        I value your feedback! Let me know how I can improve the app or any additional features you'd like to see.
     """)
