@@ -26,7 +26,7 @@ def load_data(file_path):
     return h1, d2
 
 # Path to the Excel file 
-file_path = 'AIHW_INJCAT213_Machine_readable_21062024.xlsx'
+file_path = 'data/AIHW_INJCAT213_Machine_readable_21062024.xlsx'
 
 # Streamlit sidebar UI components
 st.sidebar.title("Navigation")
