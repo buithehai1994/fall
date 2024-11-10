@@ -176,11 +176,7 @@ elif tab == "References":
 
 elif tab == "Contact":
     st.header("Contact Me")
-    st.write("""
-        ## Get in Touch
-
-        If you have any questions or feedback about the Flight Fare Prediction Tool, feel free to reach out to me. I am always happy to help!
-
+    st.write("""        
         **GitHub:**
         - Check out our repository on [GitHub](https://github.com/buithehai1994/fall) for updates, issues, and contributions.
 
