@@ -102,19 +102,41 @@ elif tab == "Total Injuries by Type (Bar Chart)":
         y='Number of Cases',
         title="Total Number of Injuries by Type"
     )
+
     st.plotly_chart(fig_bar)
-
+    
 elif tab == "Total Injuries by Type (Pie Chart)":
+    # Display subheader
     st.subheader("Total Number of Injuries by Type (Pie Chart)")
-    grouped_by_type = process_data_for_bar_chart(h1)
-    fig_pie = px.pie(
-        grouped_by_type,
-        names='Injury Type',
-        values='Number of Cases',
-        title="Total Number of Injuries by Type"
-    )
-    st.plotly_chart(fig_pie)
 
+    # Process the data (ensure the function returns a DataFrame with columns 'Injury Type' and 'Number of Cases')
+    grouped_by_type = process_data_for_bar_chart(h1)  # Ensure this function is defined correctly
+
+    # Check the structure of the grouped_by_type DataFrame to verify it has the expected columns
+    if not {'Injury Type', 'Number of Cases'}.issubset(grouped_by_type.columns):
+        st.error("DataFrame must contain 'Injury Type' and 'Number of Cases' columns")
+    else:
+        # Calculate the total number of cases
+        total_cases = grouped_by_type['Number of Cases'].sum()
+
+        # Add a new column for percentage values
+        grouped_by_type['Percentage'] = ((grouped_by_type['Number of Cases'] / total_cases) * 100).round(2)
+
+        # Create the pie chart
+        fig_pie = px.pie(
+            grouped_by_type,
+            names='Injury Type',  # Column for injury types
+            values='Percentage',  # Use the calculated percentage
+            title="Total Number of Injuries by Type"
+        )
+        
+        # Update the traces to display both label and percentage
+        fig_pie.update_traces(textinfo='label+percent', textposition='inside')
+        
+        # Display the pie chart
+        st.plotly_chart(fig_pie)
+    
+    
 elif tab == "Interactive Stacked Bar Chart by Age Group":
     st.subheader("Interactive Stacked Bar Chart of Injury Cases by Age Group and Type")
     fig_stack = px.bar(
@@ -124,6 +146,16 @@ elif tab == "Interactive Stacked Bar Chart by Age Group":
         color='Injury Type',
         title="Interactive Stacked Bar Chart of Injury Cases by Age Group and Type"
     )
+
+    # Explicitly set the order of categories on the x-axis
+    fig_stack.update_layout(
+        xaxis=dict(type='category', categoryorder='array', categoryarray=['0-4', '5-9', '10-14', '15-19', 
+                                                                    '20-24', '25-29', '30-34', '45-49', 
+                                                                    '50-54', '55-59', '60-64', '65-69', 
+                                                                    '70-74', '75-79', '80-84', '85-89', 
+                                                                    '90-94', '95+'])
+    )
+
     fig_stack.update_layout(barmode='stack', xaxis={'categoryorder': 'category ascending'})
     st.plotly_chart(fig_stack)
 
@@ -138,6 +170,14 @@ elif tab == "Percentage of Injury Cases by Age Group":
         y='Percentage',
         color='Injury Type',
         title="Percentage of Injury Cases by Age Group and Type"
+    )
+    # Explicitly set the order of categories on the x-axis
+    fig_percentage.update_layout(
+        xaxis=dict(type='category', categoryorder='array', categoryarray=['0-4', '5-9', '10-14', '15-19', 
+                                                                    '20-24', '25-29', '30-34', '45-49', 
+                                                                    '50-54', '55-59', '60-64', '65-69', 
+                                                                    '70-74', '75-79', '80-84', '85-89', 
+                                                                    '90-94', '95+'])
     )
     fig_percentage.update_layout(barmode='stack', xaxis={'categoryorder': 'category ascending'})
     st.plotly_chart(fig_percentage)
