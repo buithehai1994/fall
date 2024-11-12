@@ -26,10 +26,22 @@ def load_data(file_path):
     
     return h1, d2
 
-# Cache data processing for bar chart
+# Cache data processing for bar chart with ordered age groups
 @st.cache_data
 def process_data_for_bar_chart(h1):
-    grouped_by_type = h1.groupby('Injury Type', as_index=False)['Number of Cases'].sum()
+    # Define the desired order of age groups
+    age_order = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '45-49', '50-54', 
+                 '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-89', '90-94', '95+']
+    
+    # Set 'Age Group' as a categorical type with the specified order
+    h1['Age Group'] = pd.Categorical(h1['Age Group'], categories=age_order, ordered=True)
+    
+    # Group by 'Injury Type' and 'Age Group', then sum the 'Number of Cases'
+    grouped_by_type = h1.groupby(['Injury Type', 'Age Group'], as_index=False)['Number of Cases'].sum()
+    
+    # Sort by 'Age Group' to ensure the order is maintained in the plot
+    grouped_by_type = grouped_by_type.sort_values('Age Group')
+    
     return grouped_by_type
 
 # Path to the Excel file (update with your file path)
@@ -176,7 +188,11 @@ elif tab == "References":
 
 elif tab == "Contact":
     st.header("Contact Me")
-    st.write("""        
+    st.write("""
+        ## Get in Touch
+
+        If you have any questions or feedback about the Flight Fare Prediction Tool, feel free to reach out to me. I am always happy to help!
+
         **GitHub:**
         - Check out our repository on [GitHub](https://github.com/buithehai1994/fall) for updates, issues, and contributions.
 
