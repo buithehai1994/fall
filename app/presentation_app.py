@@ -97,21 +97,21 @@ st.markdown(
 
 # List of HTML file paths in the desired order
 html_files = [
-    "injures_by_type_bar_chart.html",
-    "injures_by_type_pie_chart.html",
-    "annual_number_of_injury_cases_by_type.html",
-    "Age_Standardised_rate_of_death_Injury.html",
-    "injures_by_age_causes_stacked_bar_chart.html",
-    "injures_by_age_causes_stacked_bar_percentage.html",
-    "population_by_age_group_and_sex_dashboard.html",
-    "population_by_total_age_group_dashboard.html",
-    "population_by_year_dashboard.html",
-    "projected_age_gender.html",
-    "predicted_total_pop_by_area.html",
+    "html/injures_by_type_bar_chart.html",
+    "html/injures_by_type_pie_chart.html",
+    "html/annual_number_of_injury_cases_by_type.html",
+    "html/Age_Standardised_rate_of_death_Injury.html",
+    "html/injures_by_age_causes_stacked_bar_chart.html",
+    "html/injures_by_age_causes_stacked_bar_percentage.html",
+    "html/population_by_age_group_and_sex_dashboard.html",
+    "html/population_by_total_age_group_dashboard.html",
+    "html/population_by_year_dashboard.html",
+    "html/projected_age_gender.html",
+    "html/predicted_total_pop_by_area.html",
     # Add the new explanation slide as the 12th slide
-    "crude_rate_explanation.html",
-    "predicted_injures_by_age_causes_stacked_bar_chart.html",
-    "predicted_injures_by_age_causes_stacked_bar_chart_percentage.html",
+    "html/crude_rate_explanation.html",
+    "html/predicted_injures_by_age_causes_stacked_bar_chart.html",
+    "html/predicted_injures_by_age_causes_stacked_bar_chart_percentage.html",
 ]
 
 # Titles for each slide
