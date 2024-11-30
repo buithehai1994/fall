@@ -95,7 +95,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# List of HTML file paths in the desired order
+# Updated list of HTML file paths without the Crude Rate Explanation slide
 html_files = [
     "html/injures_by_type_bar_chart.html",
     "html/injures_by_type_pie_chart.html",
@@ -104,17 +104,15 @@ html_files = [
     "html/injures_by_age_causes_stacked_bar_chart.html",
     "html/injures_by_age_causes_stacked_bar_percentage.html",
     "html/population_by_age_group_and_sex_dashboard.html",
-    "html/population_by_total_age_group_dashboard.html",
     "html/population_by_year_dashboard.html",
-    "html/projected_age_gender.html",
     "html/predicted_total_pop_by_area.html",
-    # Add the new explanation slide as the 12th slide
     "html/crude_rate_explanation.html",
+    # Removed the Crude Rate Explanation slide
     "html/predicted_injures_by_age_causes_stacked_bar_chart.html",
     "html/predicted_injures_by_age_causes_stacked_bar_chart_percentage.html",
 ]
 
-# Titles for each slide
+# Updated slide titles list without the Crude Rate Explanation slide
 slide_titles = [
     "Injuries by Type (Bar Chart)",
     "Injuries by Type (Pie Chart)",
@@ -122,13 +120,11 @@ slide_titles = [
     "Age Standardised Rate of Death (Injury)",
     "Injuries by Age Causes (Stacked Bar Chart)",
     "Injuries by Age Causes (Stacked Bar Chart Percentage)",
-    "Population by Age Group and Sex",
-    "Population by Total Age Group",
+    "Population by Age Group and Gender",
     "Population by Year",
-    "Projected Age and Gender",
     "Predicted Total Population by Area",
-    # Title for the new explanation slide
-    "Crude Rate Explanation",
+    "Crude rate",
+    # Updated titles list without the Crude Rate Explanation
     "Predicted Injuries by Age Causes (Stacked Bar Chart)",
     "Predicted Injuries by Age Causes (Stacked Bar Chart Percentage)"
 ]
@@ -147,7 +143,7 @@ if selected_tab == "Introduction":
 
         This dashboard provides various insights on population statistics, including:
         
-        - Population by Age Group and Sex
+        - Population by Age Group and Gender
         - Population by Total Age Group
         - Population by Year
         
@@ -196,24 +192,14 @@ else:
 
     # Render the current slide
     try:
-        if current_slide == 11:
-            # Display the crude rate explanation directly
-            st.markdown("""
-                ## Crude rate = $\\frac{\\text{Number of Injuries}}{\\text{Population}} \\times 100,000$
+        # Display the HTML content from the file
+        html_path = html_files[current_slide]
+        with open(html_path, 'r', encoding='utf-8') as file:
+            html_content = file.read()
 
-                A crude rate shows how many events (like injuries) happen per 100,000 people in a group. 
-                It helps compare different groups, regardless of their size, by standardizing the data.
+        # Render the HTML content inside a responsive iframe
+        components.html(html_content, height=iframe_height, width=1000, scrolling=True)
 
-                For example, a crude rate of 50 means 50 injuries per 100,000 people.
-            """)
-        else:
-            # Display the HTML content from the file
-            html_path = html_files[current_slide]
-            with open(html_path, 'r', encoding='utf-8') as file:
-                html_content = file.read()
-
-            # Render the HTML content inside a responsive iframe
-            components.html(html_content, height=iframe_height, width=1000, scrolling=True)
     except FileNotFoundError:
         st.error(f"File not found: {html_path}")
 
