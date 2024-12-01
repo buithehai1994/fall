@@ -95,38 +95,24 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Updated list of HTML file paths without the Crude Rate Explanation slide
-html_files = [
-    "html/injures_by_type_bar_chart.html",
-    "html/injures_by_type_pie_chart.html",
-    "html/annual_number_of_injury_cases_by_type.html",
-    "html/Age_Standardised_rate_of_death_Injury.html",
-    "html/injures_by_age_causes_stacked_bar_chart.html",
-    "html/injures_by_age_causes_stacked_bar_percentage.html",
-    "html/population_by_age_group_and_sex_dashboard.html",
-    "html/population_by_year_dashboard.html",
-    "html/predicted_total_pop_by_area.html",
-    "html/crude_rate_explanation.html",
-    # Removed the Crude Rate Explanation slide
-    "html/predicted_injures_by_age_causes_stacked_bar_chart.html",
-    "html/predicted_injures_by_age_causes_stacked_bar_chart_percentage.html",
-]
+# Define a list of tuples (title, html_filename) for the slides
+slides = [
+    ("Injuries by Type (Bar Chart)", "html/injures_by_type_bar_chart.html"),
+    ("Injuries by Type (Pie Chart)", "html/injures_by_type_pie_chart.html"),
+    ("Annual Number of Injury Cases by Type", "html/annual_number_of_injury_cases_by_type.html"),
+    ("Age Standardised Rate of Death (Injury)", "html/Age_Standardised_rate_of_death_Injury.html"),
+    ("Injuries by Age Causes (Stacked Bar Chart)", "html/injures_by_age_causes_stacked_bar_chart.html"),
+    ("Injuries by Age Causes (Stacked Bar Chart Percentage)", "html/injures_by_age_causes_stacked_bar_percentage.html"),
+    ("Population by Age Group and Gender", "html/population_by_age_group_and_sex_dashboard.html"),
+    
+    # Combine the Population Pyramid Comparison (2022 & 2032) into a single slide
+    ("Population Pyramid Comparison (2022 & 2032)", "html/pyramid_2022_2032_combined.html"),
 
-# Updated slide titles list without the Crude Rate Explanation slide
-slide_titles = [
-    "Injuries by Type (Bar Chart)",
-    "Injuries by Type (Pie Chart)",
-    "Annual Number of Injury Cases by Type",
-    "Age Standardised Rate of Death (Injury)",
-    "Injuries by Age Causes (Stacked Bar Chart)",
-    "Injuries by Age Causes (Stacked Bar Chart Percentage)",
-    "Population by Age Group and Gender",
-    "Population by Year",
-    "Predicted Total Population by Area",
-    "Crude rate",
-    # Updated titles list without the Crude Rate Explanation
-    "Predicted Injuries by Age Causes (Stacked Bar Chart)",
-    "Predicted Injuries by Age Causes (Stacked Bar Chart Percentage)"
+    ("Population by Year", "html/population_by_year_dashboard.html"),
+    ("Predicted Total Population by Area", "html/predicted_total_pop_by_area.html"),
+    ("Crude rate", "html/crude_rate_explanation.html"),
+    ("Predicted Injuries by Age Causes (Stacked Bar Chart)", "html/predicted_injures_by_age_causes_stacked_bar_chart.html"),
+    ("Predicted Injuries by Age Causes (Stacked Bar Chart Percentage)", "html/predicted_injures_by_age_causes_stacked_bar_chart_percentage.html")
 ]
 
 # Title for the presentation
@@ -138,18 +124,17 @@ selected_tab = st.sidebar.radio("Select a Tab", tabs, index=1)
 
 if selected_tab == "Introduction":
     # Display intro content here
-    st.write("""
+    st.write(""" 
         # Welcome to the Population Presentation
 
         This dashboard provides various insights on population statistics, including:
-        
+
         - Population by Age Group and Gender
         - Population by Total Age Group
         - Population by Year
-        
+
         Navigate through the slides to explore the data visualizations in more detail.
     """)
-
 else:
     # Initialize session state for the current slide
     if 'current_slide' not in st.session_state:
@@ -159,8 +144,8 @@ else:
     current_slide = st.session_state.current_slide
 
     # Progress bar
-    st.markdown(f"#### Slide {current_slide + 1} of {len(html_files)}: {slide_titles[current_slide]}")
-    progress_percentage = ((current_slide + 1) / len(html_files)) * 100
+    st.markdown(f"#### Slide {current_slide + 1} of {len(slides)}: {slides[current_slide][0]}")
+    progress_percentage = ((current_slide + 1) / len(slides)) * 100
     st.markdown(
         f"""
         <div class="progress-bar">
@@ -180,7 +165,7 @@ else:
             st.rerun()
 
     with col3:
-        if st.button("Next ➡️", key="next", disabled=current_slide == len(html_files) - 1):
+        if st.button("Next ➡️", key="next", disabled=current_slide == len(slides) - 1):
             st.session_state.current_slide += 1
             st.rerun()
 
@@ -192,23 +177,39 @@ else:
 
     # Render the current slide
     try:
-        # Display the HTML content from the file
-        html_path = html_files[current_slide]
-        with open(html_path, 'r', encoding='utf-8') as file:
-            html_content = file.read()
+        # Get the current HTML file
+        slide_title, html_filename = slides[current_slide]
 
-        # Render the HTML content inside a responsive iframe
-        components.html(html_content, height=iframe_height, width=1000, scrolling=True)
+        # Special case for the combined pyramid slide
+        if slide_title == "Population Pyramid Comparison (2022 & 2032)":
+            # Load and display both 2022 and 2032 pyramids together
+            with open("pyramid_2022.html", 'r', encoding='utf-8') as file_2022:
+                html_content_2022 = file_2022.read()
+
+            with open("pyramid_2032.html", 'r', encoding='utf-8') as file_2032:
+                html_content_2032 = file_2032.read()
+
+            # Combine both pyramids into one slide
+            st.markdown("<h2>Population Pyramid Comparison (2022 & 2032)</h2>", unsafe_allow_html=True)
+            components.html(html_content_2022, height=iframe_height, width=1000, scrolling=True)
+            components.html(html_content_2032, height=iframe_height, width=1000, scrolling=True)
+        else:
+            # Render the HTML content for other slides
+            with open(html_filename, 'r', encoding='utf-8') as file:
+                html_content = file.read()
+
+            # Render the HTML content inside a responsive iframe
+            components.html(html_content, height=iframe_height, width=1000, scrolling=True)
 
     except FileNotFoundError:
-        st.error(f"File not found: {html_path}")
+        st.error(f"File not found: {html_filename}")
 
     # Dropdown for direct navigation to a specific slide
     st.sidebar.markdown("### Go to Slide")
     slide_index = st.sidebar.selectbox(
         "Select Slide", 
-        options=range(len(html_files)), 
-        format_func=lambda x: f"{x + 1}: {slide_titles[x]}",
+        options=range(len(slides)), 
+        format_func=lambda x: f"{x + 1}: {slides[x][0]}",
         index=current_slide,
     )
     if slide_index != current_slide:
