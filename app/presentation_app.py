@@ -105,8 +105,8 @@ slides = [
     ("Injuries by Age Causes (Stacked Bar Chart Percentage)", "html/injures_by_age_causes_stacked_bar_percentage.html"),
     ("Population by Age Group and Gender", "html/population_by_age_group_and_sex_dashboard.html"),
     
-    # Combine the Population Pyramid Comparison (2022 & 2032) into a single slide
-    ("Population Pyramid Comparison (2022 & 2032)", "html/pyramid_2022_2032_combined.html"),
+    # Directly reference both 2022 and 2032 pyramids in the same slide
+    ("Population Pyramid Comparison (2022 & 2032)", None),  # No combined file, will load both pyramids here
 
     ("Population by Year", "html/population_by_year_dashboard.html"),
     ("Predicted Total Population by Area", "html/predicted_total_pop_by_area.html"),
@@ -180,7 +180,7 @@ else:
         # Get the current HTML file
         slide_title, html_filename = slides[current_slide]
 
-        # Special case for the combined pyramid slide
+        # Special case for the Population Pyramid slide
         if slide_title == "Population Pyramid Comparison (2022 & 2032)":
             # Load and display both 2022 and 2032 pyramids together
             with open("pyramid_2022.html", 'r', encoding='utf-8') as file_2022:
@@ -190,7 +190,6 @@ else:
                 html_content_2032 = file_2032.read()
 
             # Combine both pyramids into one slide
-            st.markdown("<h2>Population Pyramid Comparison (2022 & 2032)</h2>", unsafe_allow_html=True)
             components.html(html_content_2022, height=iframe_height, width=1000, scrolling=True)
             components.html(html_content_2032, height=iframe_height, width=1000, scrolling=True)
         else:
