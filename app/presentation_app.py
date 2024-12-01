@@ -183,10 +183,10 @@ else:
         # Special case for the Population Pyramid slide
         if slide_title == "Population Pyramid Comparison (2022 & 2032)":
             # Load and display both 2022 and 2032 pyramids together
-            with open("pyramid_2022.html", 'r', encoding='utf-8') as file_2022:
+            with open("html/pyramid_2022.html", 'r', encoding='utf-8') as file_2022:
                 html_content_2022 = file_2022.read()
 
-            with open("pyramid_2032.html", 'r', encoding='utf-8') as file_2032:
+            with open("html/pyramid_2032.html", 'r', encoding='utf-8') as file_2032:
                 html_content_2032 = file_2032.read()
 
             # Combine both pyramids into one slide
