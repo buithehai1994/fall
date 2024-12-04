@@ -110,7 +110,6 @@ slides = [
 
     ("Population by Year", "html/population_by_year_dashboard.html"),
     ("Predicted Total Population by Area", "html/predicted_total_pop_by_area.html"),
-    ("Map of predictied Population by Area", "html/top_population_areas_map.html"),
     ("Crude rate", "html/crude_rate_explanation.html"),
     ("Predicted Injuries by Age Causes (Stacked Bar Chart)", "html/predicted_injures_by_age_causes_stacked_bar_chart.html"),
     ("Predicted Injuries by Age Causes (Stacked Bar Chart Percentage)", "html/predicted_injures_by_age_causes_stacked_bar_chart_percentage.html")
