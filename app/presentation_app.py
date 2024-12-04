@@ -120,7 +120,7 @@ slides = [
 st.title("Population Presentation")
 
 # Sidebar navigation
-tabs = ["Introduction", "Presentation"]
+tabs = ["Introduction", "Presentation","References"]
 selected_tab = st.sidebar.radio("Select a Tab", tabs, index=1)
 
 if selected_tab == "Introduction":
@@ -136,7 +136,7 @@ if selected_tab == "Introduction":
 
         Navigate through the slides to explore the data visualizations in more detail.
     """)
-else:
+elif selected_tab =="Presentation":
     # Initialize session state for the current slide
     if 'current_slide' not in st.session_state:
         st.session_state.current_slide = 0
@@ -215,3 +215,19 @@ else:
     if slide_index != current_slide:
         st.session_state.current_slide = slide_index
         st.rerun()
+
+elif selected_tab == "References":
+    # Display references content here
+    st.write("""
+        # Data Sources 
+
+        The data presented in this dashboard is collected from the following sources:
+
+        1. Australian Bureau of Statistics. (n.d.). *Causes of death, Australia, latest release*. Australian Bureau of Statistics. Retrieved from [https://www.abs.gov.au/statistics/health/causes-death/causes-death-australia/latest-release#data-downloads](https://www.abs.gov.au/statistics/health/causes-death/causes-death-australia/latest-release#data-downloads)
+
+        2. Australian Government Department of Health and Aged Care. (2024, October). *Aged care data snapshot 2024*. Australian Government Department of Health and Aged Care. Retrieved from [https://www.gen-agedcaredata.gov.au/resources/access-data/2024/october/aged-care-data-snapshot-2024](https://www.gen-agedcaredata.gov.au/resources/access-data/2024/october/aged-care-data-snapshot-2024)
+
+        3. Australian Government, Department of Infrastructure, Transport, Regional Development, Communications and the Arts. (n.d.). *Atlas of Living Australia: Geospatial data*. Australian Government. Retrieved from [https://digital.atlas.gov.au/datasets/21ed31179ca3436bae6d188becf201cc_0/explore?location=-18.225238%2C-47.592505%2C4.14](https://digital.atlas.gov.au/datasets/21ed31179ca3436bae6d188becf201cc_0/explore?location=-18.225238%2C-47.592505%2C4.14)
+
+        These sources include critical population and healthcare data relevant to Australia and its regions.
+    """)
