@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 # Set page configuration (must be the first Streamlit command)
-st.set_page_config(page_title="Population Presentation", layout="wide")
+st.set_page_config(page_title="Fall Expenditure Presentation", layout="wide")
 
 # Inject custom CSS for responsive layout and better positioning
 st.markdown(
@@ -90,7 +90,7 @@ slides = [
 ]
 
 # Title for the presentation
-st.title("Population Presentation")
+st.title("Fall Expenditure Presentation")
 
 # Sidebar navigation tabs
 tabs = ["Introduction", "Presentation", "References"]
@@ -99,9 +99,9 @@ selected_tab = st.sidebar.radio("Select a Tab", tabs, index=1)
 if selected_tab == "Introduction":
     # Introduction content
     st.write(""" 
-        # Welcome to the Population Presentation
+        # Welcome to the Fall Expenditure Presentation
 
-        Explore visual insights on population expenditures, including:
+        Explore visual insights on Fall Expenditures, including:
         - Total Expenditure Over Years
         - Total Cost at Home
         
