@@ -73,20 +73,20 @@ st.markdown(
 
 # Define slides (title and associated HTML files)
 slides = [
-    ("Total Expenditure Over Years", "total_expenditure_over_years_line.html"),
-    ("Expenditure Over Year by Area of Expenditure", "area_of_expenditure_over_years.html"),
-    ("Details of Expenditure", "area_of_expenditure_over_years_bar.html"),
-    ("Total Expenditure and Total Cases by Age Groups", "total_expenditure_and_cases_over_age_group.html"),
-    ("Average Expenditure per person by age groups", "experditure_per_person_age_group.html"),
-    ("Average Hospital cost vs Home cost per patient by Age Groups", "average_hospital_vs_home_cost.html"),
-    ("Total Hospital cost", "total_cost_at_hospital.html"),
-    ("Total Hospital cost by age group", "cost_category_over_age_group_at_hospital.html"),
-    ("Total Hospital cost by age group stacked bar chart", "cost_category_over_age_group_percentage_at_hospital.html"),
-    ("Total Home cost by age group", "total_cost_at_home.html"),
-    ("Total Home cost by age group and categories", "cost_category_over_age_group_at_home.html"),
-    ("Total Home cost by age group stacked bar chart", "cost_category_over_age_group_percentage_at_home.html"),
-    ("Average number of days in hospital for hospitalisations due to falls, by age group and sex, 2019–20", "days_in_hospital.html"),
-    ("Total Expenditure per Person for a Day by Age Groups and Gender", "average_expenditure_a_day_age_group.html"),
+    ("Total Expenditure Over Years", "html_cost/total_expenditure_over_years_line.html"),
+    ("Expenditure Over Year by Area of Expenditure", "html_cost/area_of_expenditure_over_years.html"),
+    ("Details of Expenditure", "html_cost/area_of_expenditure_over_years_bar.html"),
+    ("Total Expenditure and Total Cases by Age Groups", "html_cost/total_expenditure_and_cases_over_age_group.html"),
+    ("Average Expenditure per person by age groups", "html_cost/experditure_per_person_age_group.html"),
+    ("Average Hospital cost vs Home cost per patient by Age Groups", "html_cost/average_hospital_vs_home_cost.html"),
+    ("Total Hospital cost", "html_cost/total_cost_at_hospital.html"),
+    ("Total Hospital cost by age group", "html_cost/cost_category_over_age_group_at_hospital.html"),
+    ("Total Hospital cost by age group stacked bar chart", "html_cost/cost_category_over_age_group_percentage_at_hospital.html"),
+    ("Total Home cost by age group", "html_cost/total_cost_at_home.html"),
+    ("Total Home cost by age group and categories", "html_cost/cost_category_over_age_group_at_home.html"),
+    ("Total Home cost by age group stacked bar chart", "html_cost/cost_category_over_age_group_percentage_at_home.html"),
+    ("Average number of days in hospital for hospitalisations due to falls, by age group and sex, 2019–20", "html_cost/days_in_hospital.html"),
+    ("Total Expenditure per Person for a Day by Age Groups and Gender", "html_cost/average_expenditure_a_day_age_group.html"),
 ]
 
 # Title for the presentation
