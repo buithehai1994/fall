@@ -195,8 +195,9 @@ elif selected_tab == "References":
 
         The following data sources were used in this presentation:
 
-        1. **Australian Bureau of Statistics** - Causes of Death.
-        2. **Department of Health and Aged Care** - Aged Care Data Snapshot.
+        1. Health & welfare expenditure Data. (n.d.). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports-data/health-welfare-overview/health-welfare-expenditure/data
+
+        2. Falls in older Australians 2019–20: hospitalisations and deaths among people aged 65 and over, Data. (n.d.). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports/injury/falls-in-older-australians-2019-20-hospitalisation/data
         
         For more details, visit their official websites.
     """)
