@@ -191,13 +191,15 @@ elif selected_tab == "Presentation":
 elif selected_tab == "References":
     # References section
     st.write("""
-        # Data Sources
+        # Data Sources 
 
-        The following data sources were used in this presentation:
+        The data presented in this dashboard is collected from the following sources:
 
         1. Health & welfare expenditure Data. (n.d.). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports-data/health-welfare-overview/health-welfare-expenditure/data
 
         2. Falls in older Australians 2019–20: hospitalisations and deaths among people aged 65 and over, Data. (n.d.). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports/injury/falls-in-older-australians-2019-20-hospitalisation/data
-        
-        For more details, visit their official websites.
+             
+        3. Injury in Australia, Data. (15 C.E., November). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports/injury/injury-in-australia/data
+
+        These sources include critical population and healthcare data relevant to Australia and its regions.
     """)
