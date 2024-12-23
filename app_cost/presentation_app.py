@@ -102,8 +102,8 @@ if selected_tab == "Introduction":
         # Welcome to the Fall Expenditure Presentation
 
         Explore visual insights on Fall Expenditures, including:
-        - Total Expenditure Over Years
-        - Total Cost at Home
+        - Areas of expenditures for fall injuries
+        - Estimated average expenditure per patient
         
         Navigate through the slides to view the interactive visualizations.
     """)
