@@ -144,8 +144,8 @@ elif selected_tab == "Presentation":
     # Display the selected HTML slide
     slide_title, html_filename = slides[current_slide]
     try:
-        if slide_title == "Total Expenditure per Person for a Day by Age Groups and Gender":
-            # Add explanation for slide 14
+        if slide_title == "Average Hospital cost vs Home cost per patient by Age Groups":
+            # Add explanation for slide 6
             st.write("""
             ### Defining Hospital and Home Service Categories
 
