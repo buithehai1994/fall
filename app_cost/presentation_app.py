@@ -210,8 +210,6 @@ elif selected_tab == "Suggested Solution":
     ### Conclusion
     Implementing camera-assisted monitoring devices in hospital settings is a viable strategy to enhance patient safety and reduce falls. Addressing privacy concerns and fostering collaboration among patients, families, and healthcare staff are critical for the success of this approach.
     """)
-
-
     
 elif selected_tab == "References":
     # References section
