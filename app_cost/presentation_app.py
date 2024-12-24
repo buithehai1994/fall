@@ -93,7 +93,7 @@ slides = [
 st.title("Fall Expenditure Presentation")
 
 # Sidebar navigation tabs
-tabs = ["Introduction", "Presentation", "References"]
+tabs = ["Introduction", "Presentation", "Suggested Solution", "References"]
 selected_tab = st.sidebar.radio("Select a Tab", tabs, index=1)
 
 if selected_tab == "Introduction":
@@ -188,12 +188,37 @@ elif selected_tab == "Presentation":
         st.session_state.current_slide = slide_index
         st.rerun()
 
+elif selected_tab == "Suggested Solution":
+    st.header("Suggested Solution: Camera-Assisted Monitoring Devices")
+    st.markdown("""
+    ### Overview
+    Camera-assisted monitoring devices have emerged as a promising solution to prevent hospital falls. Evidence from various studies supports their effectiveness in reducing fall rates, particularly during overnight shifts and among older patients.
+
+    ### Supporting Evidence
+    - **Quigley et al. (2019)**: Demonstrated that older patients benefited more than younger patients from video monitoring when they actively participated in surveillance of their activities.
+    - **Sand-Jecklin et al. (2018)**: Highlighted positive feedback from nursing staff and video monitoring technicians on the effectiveness of these devices. However, patients and families expressed concerns about privacy.
+    - **Woltsche et al. (2022)**: Reported a significant reduction in overnight falls due to the use of portable video monitoring devices.
+
+    ### Key Benefits
+    - **Fall Reduction**: Studies consistently show reduced fall rates with video-assisted monitoring.
+    - **Real-Time Intervention**: Allows healthcare staff to respond quickly to potential fall risks.
+    - **Improved Safety for Older Patients**: Particularly effective in reducing falls in older patient populations.
+
+    ### Challenges
+    - **Privacy Concerns**: Patients and families have voiced concerns about the impact of video monitoring on privacy, which needs to be addressed through transparent communication and informed consent.
+
+    ### Conclusion
+    Implementing camera-assisted monitoring devices in hospital settings is a viable strategy to enhance patient safety and reduce falls. Addressing privacy concerns and fostering collaboration among patients, families, and healthcare staff are critical for the success of this approach.
+    """)
+
+
+    
 elif selected_tab == "References":
     # References section
     st.write("""
         # Data Sources 
 
-        The data presented in this dashboard is collected from the following sources:
+        The data and relevant information presented in this presentation is collected from the following sources:
 
         1. Health & welfare expenditure Data. (n.d.). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports-data/health-welfare-overview/health-welfare-expenditure/data
 
@@ -201,5 +226,6 @@ elif selected_tab == "References":
              
         3. Injury in Australia, Data. (15 C.E., November). Australian Institute of Health and Welfare. https://www.aihw.gov.au/reports/injury/injury-in-australia/data
 
-        These sources include critical population and healthcare data relevant to Australia and its regions.
+        4. Oriaifo, P. (2023). Camera-assisted monitoring device as a tool to reduce falls in inpatient adults: An integrative review (Doctoral dissertation, Liberty University). Liberty University Digital Commons. https://digitalcommons.liberty.edu/doctoral/4902     
+
     """)
